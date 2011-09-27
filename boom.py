@@ -37,6 +37,11 @@ class Boom:
 
 def main():
 	b = Boom()
+	
+	if len(sys.argv) == 1:
+		print("Usage:\n Copy a key to clipboard: boo [key name] \n Setting a key: boo [key name] [value]")
+		return
+		
 	# See if they specified a command as the first argument
 	if sys.argv[1] == 'find':
 		b.find(sys.argv[2])
