@@ -1,11 +1,16 @@
 import sys, os, pickle
 
-# TODO: Support more operating systems
 def to_clipboard(value):
-	from AppKit import NSPasteboard
-	pb = NSPasteboard.generalPasteboard()
-	pb.clearContents()
-	pb.writeObjects_([value])
+	if sys.platform.startswith('darwin'):
+		from AppKit import NSPasteboard
+		pb = NSPasteboard.generalPasteboard()
+		pb.clearContents()
+		pb.writeObjects_([value])
+	elif sys.platform.startswith('win32'):
+		import win32clipboard
+		win32clipboard.OpenClipboard()
+		win32clipboard.SetClipboardText(value)
+		win32clipboard.CloseClipboard()
 
 class Boom:
 	def __init__(self):
