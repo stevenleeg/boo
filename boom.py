@@ -53,8 +53,12 @@ def main():
 		
 	# Set?
 	try:
-		b.set(sys.argv[1], sys.argv[2])
-		print("\033[92m [OK!] \033[0m Key '%s' now has value:\n %s" % (sys.argv[1], sys.argv[2]))
+		value = " ".join(sys.argv[2:])
+		if len(value) == 0:
+			raise IndexError
+		
+		b.set(sys.argv[1], value)
+		print("\033[92m [OK!] \033[0m Key '%s' now has value:\n %s" % (sys.argv[1], value))
 		return
 	except IndexError:
 		pass
