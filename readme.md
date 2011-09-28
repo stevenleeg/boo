@@ -60,7 +60,7 @@ Lists all of the keys stored in your `~/.boom` file.
 
 Known Bugs/Todo
 ================
- * It's currently OS X only (since it relies on AppKit to access to clipboard). Linux support will be coming soon. Windows is open ended unless someone wants to do it themselves.
+ * It's currently OS X and Windows only (on OSX, it relies on AppKit to access to clipboard). Linux support will be coming soon.
  * I want to add some kind of grouping support. Right now the only way to do it is to name the keys you want to group something-keyname and use grep to filter them (use `boo all`).
  * Needs a `mv` command for renaming keys.
 
