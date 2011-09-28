@@ -61,10 +61,10 @@ def main():
 		return
 		
 	# See if they specified a command as the first argument
-	if sys.argv[1] == 'all':
+	if sys.argv[1] == '-a':
 		b.list()
 		return True
-	elif sys.argv[1] == 'mv':
+	elif sys.argv[1] == '-m':
 		try:
 			b.mv(sys.argv[2], sys.argv[3])
 			print("\033[92m [OK!] \033[0m Key %s is now known as %s." % (sys.argv[2], sys.argv[3]))
@@ -73,7 +73,7 @@ def main():
 		
 		return True
  	# Delete?
-	elif sys.argv[1] == 'rm':
+	elif sys.argv[1] == '-r':
 		try:
 			b.rm(sys.argv[2])
 			print("\033[92m [OK!] \033[0m Key %s has been removed." % (sys.argv[1]))
