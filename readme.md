@@ -1,6 +1,6 @@
 What's this?
 ===========
-Boo is a reimplementation of a handy tool I saw in one of [Zach Holman](https://github.com/holman)'s [screencasts](http://zachholman.com/screencast/vagranception/). Basically it's a key value store that allows you to save snippits of text that you can later find and copy to your clipboard.
+Boo is a reimplementation of a handy tool I saw in one of [Zach Holman](https://github.com/holman)'s [screencasts](http://zachholman.com/screencast/vagranception/). Basically it's a key value store that allows you to save snippets of text that you can later find and copy to your clipboard.
 
 Example
 =========
