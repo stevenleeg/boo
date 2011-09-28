@@ -46,7 +46,7 @@ Gets the value of key `test` and copys it to your clipboard
 
 Removes the key `test`
 
-### Move (to be implemented)
+### Move
 
     boo mv test hello
 
@@ -62,6 +62,5 @@ Known Bugs/Todo
 ================
  * It's currently OS X and Windows only (on OSX, it relies on AppKit to access to clipboard). Linux support will be coming soon.
  * I want to add some kind of grouping support. Right now the only way to do it is to name the keys you want to group something-keyname and use grep to filter them (use `boo all`).
- * Needs a `mv` command for renaming keys.
 
 And of course if you have any ideas, feel free to open a new issue or if you're dedicated: submit a pull request!
