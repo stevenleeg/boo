@@ -62,5 +62,6 @@ Known Bugs/Todo
 ================
  * It's currently OS X and Windows only (on OSX, it relies on AppKit to access to clipboard). Linux support will be coming soon.
  * I want to add some kind of grouping support. Right now the only way to do it is to name the keys you want to group something-keyname and use grep to filter them (use `boo all`).
+ * Implement some kind of remote repository; allowing boo keys to be synchronized between multiple machines. Possibly even some sharing between users?
 
 And of course if you have any ideas, feel free to open a new issue or if you're dedicated: submit a pull request!
