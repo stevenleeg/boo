@@ -35,6 +35,10 @@ class Boom:
 		self.data[key] = value
 		self.save()
 	
+	def list(self):
+		for key in self.data:
+			print(key)
+	
 	def rm(self, key):
 		del(self.data[key])
 		self.save()
@@ -47,8 +51,8 @@ def main():
 		return
 		
 	# See if they specified a command as the first argument
-	if sys.argv[1] == 'find':
-		b.find(sys.argv[2])
+	if sys.argv[1] == 'all':
+		b.list()
 		return True
 	# Delete?
 	elif sys.argv[1] == 'rm':
