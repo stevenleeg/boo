@@ -42,6 +42,11 @@ class Boom:
 	def rm(self, key):
 		del(self.data[key])
 		self.save()
+	
+	def mv(self, key, to):
+		self.data[to] = self.data[key]
+		del(self.data[key])
+		self.save()
 
 def main():
 	b = Boom()
@@ -54,7 +59,15 @@ def main():
 	if sys.argv[1] == 'all':
 		b.list()
 		return True
-	# Delete?
+	elif sys.argv[1] == 'mv':
+		try:
+			b.mv(sys.argv[2], sys.argv[3])
+			print("\033[92m [OK!] \033[0m Key %s is now known as %s." % (sys.argv[2], sys.argv[3]))
+		except KeyError:
+			print("\033[91m [NAH] \033[0m Key '%s' does not exist" % sys.argv[2])
+		
+		return True
+ 	# Delete?
 	elif sys.argv[1] == 'rm':
 		try:
 			b.rm(sys.argv[2])
@@ -71,7 +84,10 @@ def main():
 			raise IndexError
 		
 		b.set(sys.argv[1], value)
-		print("\033[92m [OK!] \033[0m Key '%s' now has value:\n %s" % (sys.argv[1], value))
+		if '\n' in value:
+			print("\033[92m [OK!] \033[0m Key '%s' now has value:\n%s" % (sys.argv[1], value))
+		else:
+			print("\033[92m [OK!] \033[0m Key '%s' now has value: %s" % (sys.argv[1], value))
 		return
 	except IndexError:
 		pass
