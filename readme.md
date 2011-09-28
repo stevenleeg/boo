@@ -26,6 +26,10 @@ Fire up your terminal and type:
 
 And that's it! Boo is now at your service!
 
-Release Log
-============
-None yet. I'm still in pretty early stages of development, however boo is pretty usable even at this stage.
+Known Bugs/Todo
+================
+ * It's currently OS X only (since it relies on AppKit to access to clipboard). Linux support will be coming soon. Windows is open ended unless someone wants to do it themselves.
+ * I want to add some kind of grouping support. Right now the only way to do it is to name the keys you want to group something-keyname and use grep to filter them (use `boo all`).
+ * Needs a `mv` command for renaming keys.
+
+And of course if you have any ideas, feel free to open a new issue or if you're dedicated: submit a pull request!
