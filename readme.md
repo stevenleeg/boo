@@ -26,6 +26,38 @@ Fire up your terminal and type:
 
 And that's it! Boo is now at your service!
 
+Commands
+=========
+### Create
+    
+    boo test hello world
+
+Creates a new key, `test`, and sets it's value to `hello world`
+
+### Get
+
+    boo test
+
+Gets the value of key `test` and copys it to your clipboard
+
+### Delete
+
+    boo rm test
+
+Removes the key `test`
+
+### Move (to be implemented)
+
+    boo mv test hello
+
+Renames the key `test` to `hello`
+
+### All
+
+    boo all
+
+Lists all of the keys stored in your `~/.boom` file.
+
 Known Bugs/Todo
 ================
  * It's currently OS X only (since it relies on AppKit to access to clipboard). Linux support will be coming soon. Windows is open ended unless someone wants to do it themselves.
