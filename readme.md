@@ -42,26 +42,26 @@ Gets the value of key `test` and copys it to your clipboard
 
 ### Delete
 
-    boo rm test
+    boo -r test
 
 Removes the key `test`
 
 ### Move
 
-    boo mv test hello
+    boo -m test hello
 
 Renames the key `test` to `hello`
 
 ### All
 
-    boo all
+    boo -a
 
 Lists all of the keys stored in your `~/.boom` file.
 
 Known Bugs/Todo
 ================
  * It's currently OS X and Windows only (on OSX, it relies on AppKit to access to clipboard). Linux support will be coming soon.
- * I want to add some kind of grouping support. Right now the only way to do it is to name the keys you want to group something-keyname and use grep to filter them (use `boo all`).
+ * I want to add some kind of grouping support. Right now the only way to do it is to name the keys you want to group something-keyname and use grep to filter them (use `boo -a`).
  * Implement some kind of remote repository; allowing boo keys to be synchronized between multiple machines. Possibly even some sharing between users?
 
 And of course if you have any ideas, feel free to open a new issue or if you're dedicated: submit a pull request!
