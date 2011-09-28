@@ -34,6 +34,10 @@ class Boom:
 	def set(self, key, value):
 		self.data[key] = value
 		self.save()
+	
+	def rm(self, key):
+		del(self.data[key])
+		self.save()
 
 def main():
 	b = Boom()
@@ -48,7 +52,12 @@ def main():
 		return True
 	# Delete?
 	elif sys.argv[1] == 'rm':
-		b.rm(sys.argv[2])
+		try:
+			b.rm(sys.argv[2])
+			print("\033[92m [OK!] \033[0m Key %s has been removed." % (sys.argv[1]))
+		except KeyError:
+			print("\033[91m [NAH] \033[0m Key '%s' does not exist" % sys.argv[2])
+		
 		return True
 		
 	# Set?
