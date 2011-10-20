@@ -80,7 +80,7 @@ def main():
 	elif sys.argv[1] == '-r':
 		try:
 			b.rm(sys.argv[2])
-			print("\033[92m [OK!] \033[0m Key %s has been removed." % (sys.argv[1]))
+			print("\033[92m [OK!] \033[0m Key %s has been removed." % (sys.argv[2]))
 		except KeyError:
 			print("\033[91m [NAH] \033[0m Key '%s' does not exist" % sys.argv[2])
 		
