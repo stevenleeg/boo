@@ -109,9 +109,9 @@ def main():
 			b.concat(key, value)
 			value = b.get(key)
 			if '\n' in value:
-				print("\033[92m [OK!] \033[0m Key '%s' now has value:\n%s" % (sys.argv[1], value))
+				print("\033[92m [OK!] \033[0m Key '%s' now has value:\n%s" %(key, value))
 			else:
-				print("\033[92m [OK!] \033[0m Key '%s' now has value: %s" % (sys.argv[1], value))
+				print("\033[92m [OK!] \033[0m Key '%s' now has value: %s" % (key, value))
 		except:
 			pass
 		return True
