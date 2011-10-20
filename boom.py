@@ -1,4 +1,4 @@
-import sys, os, pickle
+import sys, os, pickle, md5
 
 def to_clipboard(value):
 	if sys.platform.startswith('darwin'):
@@ -53,6 +53,12 @@ class Boom:
 		del(self.data[key])
 		self.save()
 
+	def concat(self, key, value):
+		if not key in self.data:
+			return
+		self.data[key] = self.data[key] + value
+		self.save()
+
 def main():
 	b = Boom()
 	
@@ -76,15 +82,87 @@ def main():
 	elif sys.argv[1] == '-r':
 		try:
 			b.rm(sys.argv[2])
-			print("\033[92m [OK!] \033[0m Key %s has been removed." % (sys.argv[1]))
+			print("\033[92m [OK!] \033[0m Key %s has been removed." % (sys.argv[2]))
 		except KeyError:
 			print("\033[91m [NAH] \033[0m Key '%s' does not exist" % sys.argv[2])
 		
 		return True
+	elif sys.argv[1] == "-p":
+		value = b.get(sys.argv[2])
+		if value is None:
+			print("\033[91m [NAH] \033[0m Key '%s' does not exist" % sys.argv[2])
+			return True
+		print value
+		return True
+
+	elif sys.argv[1] == "-e":
+		# edit value using EDITOR or vi.
+		try:
+			key = sys.argv[2]
+			filename = "/tmp/" + md5.md5(key).hexdigest()
+			value = b.get(key)
+			if value is None:
+				value = ""
+
+			tmpFile = open(filename, "w")
+			tmpFile.write(value)
+			tmpFile.close()
+
+			editor = os.environ["EDITOR"]
+			if not editor:
+				editor = "vi"
+
+			os.system(editor + " " + filename)
+
+			tmpFile = open(filename, "r")
+			value = tmpFile.read()
+			if value[-1:] == "\n" or value[-1:] == "\r":
+				value = value[:-1]
+			tmpFile.close()
+			os.remove(filename)
+
+			b.set(key, value)
+			print("\033[92m [OK!] \033[0m Key '%s' has been set to the contents of the edited file." % key)
+		except Exception as e:
+			print(e)
+
+		return True
+	elif sys.argv[1] == "-c": # concat
+		try:
+			key = sys.argv[2]
+			if sys.argv[3] == "-":
+				value = " ".join(sys.argv[4:])
+				value = value + "\n" + sys.stdin.read()
+				if value[-1:] == "\n" or value[-1:] == "\r":
+					value = value[:-1]
+			else:
+				value = " ".join(sys.argv[3:])
+			if not value:
+				# there's nothing to concat.
+				return True
+			if b.get(key) is None:
+				print("\033[92m [OK!] \033[0m Key '%s' does not exist... creating!" % key)
+				b.set(key, value)
+			else:
+				b.concat(key, value)
+			value = b.get(key)
+			if '\n' in value:
+				print("\033[92m [OK!] \033[0m Key '%s' now has value:\n%s" %(key, value))
+			else:
+				print("\033[92m [OK!] \033[0m Key '%s' now has value: %s" % (key, value))
+		except:
+			pass
+		return True
 		
 	# Set?
 	try:
-		value = " ".join(sys.argv[2:])
+		if sys.argv[2] == "-":
+			value = " ".join(sys.argv[3:])
+			value = value + "\n" + sys.stdin.read()
+			if value[-1:] == "\n" or value[-1:] == "\r":
+				value = value[:-1]
+		else:
+			value = " ".join(sys.argv[2:])
 		if len(value) == 0:
 			raise IndexError
 		
