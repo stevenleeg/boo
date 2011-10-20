@@ -53,6 +53,10 @@ class Boom:
 		del(self.data[key])
 		self.save()
 
+	def concat(self, key, value):
+		self.data[key] = self.data[key] + value
+		self.save()
+
 def main():
 	b = Boom()
 	
@@ -88,6 +92,26 @@ def main():
 			return True
 		print value
 
+		return True
+	elif sys.argv[1] == "-c": # concat
+		try:
+			key = sys.argv[2]
+			if sys.argv[3] == "-":
+				value = " ".join(sys.argv[4:])
+				value = value + "\n" + sys.stdin.read().rstrip("\n\r")
+			else:
+				value = " ".join(sys.argv[3:])
+			if not value:
+				# there's nothing to concat.
+				return True
+			b.concat(key, value)
+			value = b.get(key)
+			if '\n' in value:
+				print("\033[92m [OK!] \033[0m Key '%s' now has value:\n%s" % (sys.argv[1], value))
+			else:
+				print("\033[92m [OK!] \033[0m Key '%s' now has value: %s" % (sys.argv[1], value))
+		except:
+			pass
 		return True
 		
 	# Set?
