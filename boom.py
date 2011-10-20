@@ -54,6 +54,8 @@ class Boom:
 		self.save()
 
 	def concat(self, key, value):
+		if not key in self.data:
+			return
 		self.data[key] = self.data[key] + value
 		self.save()
 
@@ -106,7 +108,11 @@ def main():
 			if not value:
 				# there's nothing to concat.
 				return True
-			b.concat(key, value)
+			if b.get(key) is None:
+				print("\033[92m [OK!] \033[0m Key '%s' does not exist... creating!" % sys.argv[2])
+				b.set(key, value)
+			else:
+				b.concat(key, value)
 			value = b.get(key)
 			if '\n' in value:
 				print("\033[92m [OK!] \033[0m Key '%s' now has value:\n%s" %(key, value))
