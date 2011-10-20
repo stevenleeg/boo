@@ -98,7 +98,9 @@ def main():
 			key = sys.argv[2]
 			if sys.argv[3] == "-":
 				value = " ".join(sys.argv[4:])
-				value = value + "\n" + sys.stdin.read().rstrip("\n\r")
+				value = value + "\n" + sys.stdin.read()
+				if value[-1:] == "\n" or value[-1:] == "\r":
+					value = value[:-1]
 			else:
 				value = " ".join(sys.argv[3:])
 			if not value:
@@ -118,7 +120,9 @@ def main():
 	try:
 		if sys.argv[2] == "-":
 			value = " ".join(sys.argv[3:])
-			value = value + "\n" + sys.stdin.read().rstrip("\n\r")
+			value = value + "\n" + sys.stdin.read()
+			if value[-1:] == "\n" or value[-1:] == "\r":
+				value = value[:-1]
 		else:
 			value = " ".join(sys.argv[2:])
 		if len(value) == 0:
