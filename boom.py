@@ -94,7 +94,7 @@ def main():
 	try:
 		if sys.argv[2] == "-":
 			value = " ".join(sys.argv[3:])
-			value = value + "\n" + sys.stdin.read()
+			value = value + "\n" + sys.stdin.read().rstrip("\n\r")
 		else:
 			value = " ".join(sys.argv[2:])
 		if len(value) == 0:
