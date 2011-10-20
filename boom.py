@@ -81,7 +81,7 @@ def main():
 			print("\033[91m [NAH] \033[0m Key '%s' does not exist" % sys.argv[2])
 		
 		return True
-	elif sys.argv[1] == "-p" || sys.argv[1] == '-e':
+	elif sys.argv[1] == "-p" or sys.argv[1] == '-e':
 		value = b.get(sys.argv[2])
 		if value is None:
 			print("\033[91m [NAH] \033[0m Key '%s' does not exist" % sys.argv[2])
