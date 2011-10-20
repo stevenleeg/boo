@@ -92,7 +92,11 @@ def main():
 		
 	# Set?
 	try:
-		value = " ".join(sys.argv[2:])
+		if sys.argv[2] == "-":
+			value = " ".join(sys.argv[3:])
+			value = value + "\n" + sys.stdin.read()
+		else:
+			value = " ".join(sys.argv[2:])
 		if len(value) == 0:
 			raise IndexError
 		
