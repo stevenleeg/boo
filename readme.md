@@ -58,6 +58,33 @@ Renames the key `test` to `hello`
 
 Lists all of the keys stored in your `~/.boom` file.
 
+### Print
+
+    boo -p test
+
+Prints the value of the given key
+
+### Concatenate (append)
+
+    boo -c test hello
+
+Adds "hello" to the end of key `test`
+
+### Edit
+
+    boo -e test
+
+Opens key `test` with an editor specified by the `EDITOR` environment variable.
+
+### Stdin
+You can also set (and append to) keys through stdin:
+
+    boo test - < helloworld.txt
+ 
+or
+
+    boo test -c - < helloworld.txt
+
 Known Bugs/Todo
 ================
  * It's currently OS X and Windows only (on OSX, it relies on AppKit to access to clipboard). Linux support will be coming soon.
