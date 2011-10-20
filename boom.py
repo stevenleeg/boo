@@ -109,7 +109,7 @@ def main():
 				# there's nothing to concat.
 				return True
 			if b.get(key) is None:
-				print("\033[92m [OK!] \033[0m Key '%s' does not exist... creating!" % sys.argv[2])
+				print("\033[92m [OK!] \033[0m Key '%s' does not exist... creating!" % key)
 				b.set(key, value)
 			else:
 				b.concat(key, value)
