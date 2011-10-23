@@ -91,4 +91,6 @@ Known Bugs/Todo
  * I want to add some kind of grouping support. Right now the only way to do it is to name the keys you want to group something-keyname and use grep to filter them (use `boo -a`).
  * Implement some kind of remote repository; allowing boo keys to be synchronized between multiple machines. Possibly even some sharing between users?
 
+For grouping/remote support: see the [grouping branch](https://github.com/stevenleeg/boo/tree/grouping) and [this commit](https://github.com/stevenleeg/boo/commit/2a06da091a09980c0696b80cf02fbc8c1293093d) for details
+
 And of course if you have any ideas, feel free to open a new issue or if you're dedicated: submit a pull request!
