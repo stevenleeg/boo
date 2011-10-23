@@ -21,7 +21,7 @@ class Boom:
 			self.data = pickle.load(f)
 			f.close()
 		except (IOError, EOFError):
-			self.data = {}
+			self.data = {'keys':{}, 'groups':{}}
 			self.save()
 			print("\033[94m [MEH] \033[0m .boom not found. I'll create it for you...")
 	
@@ -31,13 +31,55 @@ class Boom:
 		return True
 	
 	def get(self, key):
+		key = key.split('/')
+
+		# It's a key in the top level
+		if len(key) == 1:
+			try:
+				return self.data['keys'][key]
+			except KeyError:
+				return None
+
+		# I N C E P T I O N
+		current = self.data
+		for group in key:
+			# The very last value is the key inside of the group
+			if group is key[-1]:
+				continue	
+			# Go deeper
+			try:
+				current = current['groups'][group]
+			except KeyError:
+				return None
+
+		# Attempt to get the key
 		try:
-			return self.data[key]
+			return current['keys'][key[-1]]
 		except KeyError:
 			return None
-	
+		
 	def set(self, key, value):
-		self.data[key] = value
+		key = key.split('/')
+
+		# It's a key in the top level
+		if len(key) == 1:
+			self.data['keys'][key] = value
+
+		# I N C E P T I O N
+		current = self.data
+		for group in key:
+			# The very last value is the key inside of the group
+			if group is key[-1]:
+				continue	
+			# Go deeper
+			try:
+				current = current['groups'][group]
+			except KeyError:
+				current = {'keys': {}, 'groups': {}}
+
+		# Set that key! 
+		current['keys'] = value
+
 		self.save()
 	
 	def list(self):
